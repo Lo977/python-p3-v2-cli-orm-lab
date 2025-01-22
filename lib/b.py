@@ -76,62 +76,63 @@ def list_employees():
 def find_employee_by_name():
     name = input("Enter Employee's Name: ")
     if employee := Employee.find_by_name(name):
-        print(f"Success: {employee}")
+        print(employee)
     else:
-        print(f"Employee name: {name} can not find!")
+        print(f"Employee: {name} not found!!!")
 
 
 def find_employee_by_id():
-    id_ = int(input("Enet Employee's Id: "))
+    id_ = input("Enter Employee's ID: ")
     if employee := Employee.find_by_id(id_):
-        print(f"Success : {employee}")
+        print(employee)
     else:
-        print(f"id:{id_} not found!!!!")
+        print(f"Employee; {id_} not found!!")
 
 
 def create_employee():
     name = input("Enter Employee's Name: ")
-    job_title = input("Enter Job Title: ")
-    department_id = int(input("Enter Department's Id: "))
+    job_title = input("Enter Employee's Job Title: ")
+    department_id = int(input("Enter Employee's Department ID: "))
     try:
         employee = Employee.create(name,job_title,department_id)
-        print(f"Success : {employee}")
+        print(f" New Employee {employee} created")
     except Exception as exc:
-        print(f"Error Creatint Employee!",exc)
+        print(f'Error Creating Employee', exc)
 
 
 def update_employee():
-    id_=int(input("Enter Employee;s Id: "))
+    id_ = input("Enter Employee's ID: ")
     if employee := Employee.find_by_id(id_):
         try:
-            name = input("Enter New Name: ")
-            job_title = input("Enter New Job Title: ")
-            department_id = int(input("Enter Department's Id: "))
+            name = input("Enter Employee's New Name: ")
+            job_title = input("Enter Employee's New Job Title: ")
+            department_id = int(input("Enter Department New Id: "))
             employee.name = name
             employee.job_title = job_title
             employee.department_id = department_id
-            employee.update()
-            print(f"Success: {employee}")
+            employee.update()   
+            print(f"Success :{employee}")
         except Exception as exc:
-            print(f"Error Updating: {employee}")
+            print("Error Updating employee",exc)
     else:
-        print(f"id:{id_} can not find")
+        print(f"Employee: {id_} not found ")
+
 
 
 def delete_employee():
-    id_ = int(input("Enter Employee's Id: "))
+    id_= input("Enter Employee's ID: ")
     if employee := Employee.find_by_id(id_):
         Employee.delete(employee)
-        print(f"Deleted: {employee}")
+        print(f"Success Deleting Employee: {employee}")
     else:
-        print(f"id:{id_} not Found")
+        print(f"Employee Id: {id_} not found !!")
 
 
 def list_department_employees():
-    department_id = int(input("Enter Department's Id: "))
+    department_id = int(input("Enter Department ID: "))
     if department := Department.find_by_id(department_id):
         employees = department.employees()
         for employee in employees:
             print(employee)
     else:
-        print(f"can not find id: {department_id}")
+        print(f"Department Id: {department_id} not found!!")
