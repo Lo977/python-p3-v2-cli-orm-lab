@@ -78,7 +78,7 @@ def find_employee_by_name():
     if employee := Employee.find_by_name(name):
         print(f"Success: {employee}")
     else:
-        print(f"Employee name: {name} can not find!")
+        print(f"Employee {name} not found")
 
 
 def find_employee_by_id():
@@ -86,18 +86,18 @@ def find_employee_by_id():
     if employee := Employee.find_by_id(id_):
         print(f"Success : {employee}")
     else:
-        print(f"id:{id_} not found!!!!")
+        print(f"Employee {id_} not found!")
 
 
 def create_employee():
-    name = input("Enter Employee's Name: ")
-    job_title = input("Enter Job Title: ")
-    department_id = int(input("Enter Department's Id: "))
+    name = input("Enter Employee's New Name: ")
+    job_title = input("Enter New Job Title: ")
+    department_id = int(input("Enter Department's New Id: "))
     try:
         employee = Employee.create(name,job_title,department_id)
         print(f"Success : {employee}")
     except Exception as exc:
-        print(f"Error Creatint Employee!",exc)
+        print(f"Error creating employee:",exc)
 
 
 def update_employee():
@@ -113,18 +113,18 @@ def update_employee():
             employee.update()
             print(f"Success: {employee}")
         except Exception as exc:
-            print(f"Error Updating: {employee}")
+            print(f"Error updating employee:",exc)
     else:
-        print(f"id:{id_} can not find")
+        print(f"Employee {id_} not found")
 
 
 def delete_employee():
     id_ = int(input("Enter Employee's Id: "))
     if employee := Employee.find_by_id(id_):
         Employee.delete(employee)
-        print(f"Deleted: {employee}")
+        print(f"Employee {id_} deleted")
     else:
-        print(f"id:{id_} not Found")
+        print(f"Employee {id_} not found")
 
 
 def list_department_employees():
@@ -134,4 +134,4 @@ def list_department_employees():
         for employee in employees:
             print(employee)
     else:
-        print(f"can not find id: {department_id}")
+        print(f"Department {department_id} not found")
